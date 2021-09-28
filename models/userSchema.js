@@ -25,9 +25,9 @@ const userSchema=new mongoose.Schema({
         type:String,
         default:"student"
     },
-    course:{
+    course:[{title:String,desc:String}]
         
-    }
+    
 });
 
 const User =mongoose.model('User',userSchema);

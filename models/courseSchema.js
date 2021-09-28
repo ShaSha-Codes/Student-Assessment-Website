@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const userSchema=new mongoose.Schema({
+const courseSchema=new mongoose.Schema({
     admin:{
         type:String,
         required:true
@@ -11,19 +11,19 @@ const userSchema=new mongoose.Schema({
     },
     date:{
         type:Date,
-        default:Date.now()
+        default:Date.now
     },
-    description:{
+    desc:{
         type:String,
         required:true
     },
     videos:{
-        type:[string]
+        type:[String]
     },
     student:{
-        type:[string]
+        type:[String]
     }
 });
 
-const User =mongoose.model('User',userSchema);
-module.exports=User;
+const Course =mongoose.model('Course',courseSchema);
+module.exports=Course;

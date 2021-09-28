@@ -24,15 +24,15 @@
             <h5 class="card-title text-center">Create a Course</h5>
             <hr>
             <p class="card-text">
-                <form action="" method="POST" class="m-3">
-                  <div class="mb-3">
-                    <label for="cocode" class="form-label">Enter the Course Code</label>
-                    <input type="text" class="form-control" name="cocode" id="cocode"  >
-                  </div>
-                  <div class="my-3">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                  </div>
-                </form>
+              <form action="/teacher/createCourse" method="POST" class="m-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" >
+                        <label for="desc" class="form-label">Description</label>
+                        <textarea class="form-control" name="desc" id="desc"></textarea>
+                        <div class="d-grid gap-2 my-3">
+                        <button class="btn btn-primary" type="submit">Create</button>
+                        </div>
+              </form>
             </p>
           </div>
         </div>
