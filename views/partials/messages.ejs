@@ -1,0 +1,32 @@
+<% if (typeof errors!=undefined){ %>
+    <% for (let i = 0; i < errors.length; i++) {%>
+        <div class="alert alert-warning alert-dismissible fade show mx-2 " role="alert">
+            <%= errors[i].msg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+    <% } %>    
+<% } %>
+
+
+<% if (success_msg!=''){ %>
+    <div class="alert alert-success alert-dismissible fade show mx-2 " role="alert">
+        <%= success_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<% } %>
+
+
+
+<% if (error_msg!=''){ %>
+    <div class="alert alert-warning alert-dismissible fade show mx-2 " role="alert">
+        <%=error_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<% } %>
+
+<% if (error!=''){ %>
+    <div class="alert alert-warning alert-dismissible fade show mx-2 " role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<% } %>
