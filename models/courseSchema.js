@@ -20,9 +20,7 @@ const courseSchema=new mongoose.Schema({
     videos:{
         type:[String]
     },
-    student:{
-        type:[String]
-    }
+    student:[{email:String, fname:String, lname:String}]
 });
 
 const Course =mongoose.model('Course',courseSchema);

@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const userSchema=require('../models/userSchema');
+const courseSchema=require('../models/courseSchema');
 const bcryptjs=require('bcryptjs');
 const passport=require('passport');
 
@@ -16,12 +17,42 @@ router.get('/register',(req,res)=>{
     res.render('register',{errors})
 })
 router.get('/dashboard',ensureStudentAuthenticated,(req,res)=>{
-    res.render('studentDashboard',{name:req.user.fname});
+    res.render('studentDashboard',{name:req.user.fname,courses:req.user.course});
 })
 
 router.get('/login',(req,res)=>{
     const errors=[]
     res.render('login',{errors})
+})
+
+router.post('/joinCourse',async(req,res)=>{
+    try{
+        let {cocode}=req.body;
+    jc=await courseSchema.findOne({_id:cocode})
+    checker=await userSchema.findOne({email:req.user.email,"course._id":cocode})
+    console.log(checker);
+    if(!checker){
+        console.log(jc.title,jc.desc)
+        let u_data=await userSchema.updateOne (
+            { email: req.user.email, }, 
+            { $push: { course:{title:jc.title,desc:jc.desc,_id:jc._id} } },
+        )
+        let uc_data=await courseSchema.updateOne (
+            { _id:cocode }, 
+            { $push: { student:{email:req.user.email,fname:req.user.fname,lname:req.user.lname} } },
+        )
+       
+    }else{
+        console.log("Already joined the course")
+    }
+    res.redirect('/student/dashboard')
+    
+    }catch(err){ 
+        console.log("error")
+        res.redirect('/student/dashboard')
+    }
+    
+    
 })
 
 router.post('/register',(req,res)=>{

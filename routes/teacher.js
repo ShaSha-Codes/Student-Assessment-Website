@@ -24,21 +24,23 @@ router.post('/login',(req,res,next)=>{
 router.post('/createCourse',async(req,res)=>{
     let {title,desc}=req.body;
     let admin=req.user.email;
-    console.log(req.user)
+    
     const newCourse = new courseSchema({
         title: title,desc: desc,admin:admin
     })
     newCourse.save();
-    console.log(req.body)
+    console.log("Checking");
+    console.log(newCourse);
+    
    
     let u_data=await userSchema.updateOne (
         { email: req.user.email, }, 
-        { $push: { course:{title:title,desc:desc} } },
+        { $push: { course:{title:title,desc:desc,_id:newCourse._id} } },
     )
     userSchema.findOne({ email: req.user.email }, (err, user)=> {
         console.log(user)
     })
-    
+    res.redirect('/teacher/dashboard')
 })
 
 router.get('/logout',(req,res)=>{
@@ -48,7 +50,17 @@ router.get('/logout',(req,res)=>{
 })
 
 router.get('/dashboard',ensureTeacherAuthenticated,(req,res)=>{
-    res.render('test',{name:req.user.fname});
+    res.render('teacherDashboard',{name:req.user.fname,courses:req.user.course});
+})
+
+router.get('/courses/:id',ensureTeacherAuthenticated,(req,res)=>{
+    res.render('hello',{id:req.params.id})
+})
+
+router.get('/courses/:id/students',ensureTeacherAuthenticated,async(req,res)=>{
+    students=await courseSchema.findOne({_id:req.params.id})
+    console.log(req.params.id,students);
+    res.render('studentlist',{id:req.params.id,list:students.student})
 })
 module.exports=router;
 

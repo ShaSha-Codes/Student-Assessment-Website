@@ -24,7 +24,7 @@
             <h5 class="card-title text-center">Join a Course</h5>
             <hr>
             <p class="card-text">
-                <form action="" method="POST" class="m-3">
+                <form action="/student/joinCourse" method="POST" class="m-3">
                   <div class="mb-3">
                     <label for="cocode" class="form-label">Enter the Course Code</label>
                     <input type="text" class="form-control" name="cocode" id="cocode"  >
@@ -61,11 +61,19 @@
       </div>
       <hr>
       <h1>Courses</h1>
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+      <div class="row">
+        <%for(var i=0;i<courses.length;i++) {%>
+          <div class="col-md-3 col-sm-4 col-6">
+            <div class="card" style="width: 18rem;">
+              <h5><%=courses[i].title %></h5>
+              <hr>
+              <div class="card-body">
+                <p class="card-text"><%=courses[i].desc %></p>
+                <a type="button" class="btn btn-primary" href=courses/<%= courses[i]._id %>>View</a>
+              </div>
+            </div>
+          </div>
+        <% } %>
       </div>
       <hr>
       <h1>Classes</h1>
