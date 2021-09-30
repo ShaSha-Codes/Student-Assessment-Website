@@ -4,6 +4,11 @@ const userSchema=require('../models/userSchema');
 const courseSchema=require('../models/courseSchema');
 const bcryptjs=require('bcryptjs');
 const passport=require('passport');
+const upload=require('../app.js');
+
+
+
+
 
 const {ensureTeacherAuthenticated}=require('../config/auth');
 
@@ -54,8 +59,15 @@ router.get('/dashboard',ensureTeacherAuthenticated,(req,res)=>{
 })
 
 router.get('/courses/:id',ensureTeacherAuthenticated,(req,res)=>{
+
     res.render('hello',{id:req.params.id})
 })
+
+
+
+
+
+
 
 router.get('/courses/:id/students',ensureTeacherAuthenticated,async(req,res)=>{
     students=await courseSchema.findOne({_id:req.params.id})

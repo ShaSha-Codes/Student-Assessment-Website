@@ -112,4 +112,10 @@ router.get('/logout',(req,res)=>{
     req.flash('success_msg','You are logged out');
     res.redirect('/student/login')
 })
+
+
+
+
+
+
 module.exports=router;
