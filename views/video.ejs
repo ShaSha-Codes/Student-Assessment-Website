@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <video src=http://localhost:3000/video/vid/<%=data %> width="1080" controls></video>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTTP Video Stream From MongoDB</title>
+  </head>
+  <body>
+    <%- include('partials/navbar.ejs') %>
+    <video id="videoPlayer" width="650" controls >
+      <source src=/video/mongo-video/<%=name%> type="video/mp4" autoplay/>
+    </video>
+  </body>
 </html>

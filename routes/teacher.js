@@ -15,7 +15,7 @@ const {ensureTeacherAuthenticated}=require('../config/auth');
 router.get('/login', (req, res)=>
 {
     const errors=[]
-    res.render('login',{errors})
+    res.render('login',{errors,req})
 })
 
 router.post('/login',(req,res,next)=>{
@@ -55,24 +55,31 @@ router.get('/logout',(req,res)=>{
 })
 
 router.get('/dashboard',ensureTeacherAuthenticated,(req,res)=>{
-    res.render('teacherDashboard',{name:req.user.fname,courses:req.user.course});
+    res.render('teacherDashboard',{name:req.user.fname,courses:req.user.course,req:req});
 })
 
 router.get('/courses/:id',ensureTeacherAuthenticated,(req,res)=>{
 
-    res.render('hello',{id:req.params.id})
+    res.render('hello',{id:req.params.id,req:req})
 })
 
 
 
+router.get('/courses/:course/uploadVideo',(req,res)=>{
+    res.render('uploadVideo',{course:req.params.course,req:req})
+})
 
-
+router.get('/logout',(req,res)=>{
+    req.logout();
+    req.flash('success_msg','You are logged out');
+    res.redirect('/teacher/login')
+})
 
 
 router.get('/courses/:id/students',ensureTeacherAuthenticated,async(req,res)=>{
     students=await courseSchema.findOne({_id:req.params.id})
     console.log(req.params.id,students);
-    res.render('studentlist',{id:req.params.id,list:students.student})
+    res.render('studentlist',{id:req.params.id,list:students.student,req:req})
 })
 module.exports=router;
 

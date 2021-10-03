@@ -9,20 +9,23 @@ const {ensureStudentAuthenticated}=require('../config/auth');
 
 router.get('/reglog', (req, res)=>
 {
-    res.render('reglog')
+    res.render('reglog',{req:req})
 })
 
 router.get('/register',(req,res)=>{
     const errors=[];
-    res.render('register',{errors})
+    res.render('register',{errors,req:req})
 })
 router.get('/dashboard',ensureStudentAuthenticated,(req,res)=>{
-    res.render('studentDashboard',{name:req.user.fname,courses:req.user.course});
+    res.render('studentDashboard',{name:req.user.fname,courses:req.user.course,req:req});
 })
-
+router.get('/courses/:id',async(req,res)=>{
+    course=await courseSchema.findOne({_id:req.params.id})
+    res.render('testing',{vid:course.videos,req:req});
+})
 router.get('/login',(req,res)=>{
     const errors=[]
-    res.render('login',{errors})
+    res.render('login',{errors,req:req})
 })
 
 router.post('/joinCourse',async(req,res)=>{

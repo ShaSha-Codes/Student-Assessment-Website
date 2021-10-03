@@ -6,7 +6,7 @@ const certificateSchema=require('../models/certificateSchema');
 
 router.get('/verify',(req,res)=>{
     const errors=[]
-    res.render('certify',{errors})
+    res.render('certify',{errors,req:req})
 })
 
 
@@ -18,12 +18,12 @@ router.post('/search',async(req,res)=>{
     cert=await certificateSchema.findOne({cred:credcode})
     console.log(cert)
     if(cert){
-        res.render('verify',{fname:cert.fname, lname:cert.lname,title:cert.title,date:cert.doc,email:cert.email,cred:cert.cred}); 
+        res.render('verify',{fname:cert.fname, lname:cert.lname,title:cert.title,date:cert.doc,email:cert.email,cred:cert.cred,req:req}); 
     }
     else{
         console.log("Certificate Not Valid")
         errors.push({msg:'Certificate Not Valid'})
-        res.render('certify',{errors})
+        res.render('certify',{errors,req:req})
     }
     
     

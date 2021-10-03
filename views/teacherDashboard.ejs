@@ -10,15 +10,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <style>
+      .zero{
+        margin:0;
+        padding:0;
+      }
+    </style>
   </head>
   <body>
-    <h1>Student Dashboard</h1>
-    <h2>Welcome <%=name %></h2>
-    <a href='/student/logout' class="btn btn-secondary">Logout</a>
-    <hr>
+    <%- include('partials/navbar.ejs') %>
+
    
       <div class="row">
-      <div class="col-md-6 my-2">
+      <div class="col-md-6 my-5 mx-auto">
         <div class="card mx-auto" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title text-center">Create a Course</h5>
@@ -36,38 +40,19 @@
             </p>
           </div>
         </div>
+      </div>   
       </div>
-      
-      <div class="col-md-6 my-2">
-        <div class="card mx-auto" style="width: 20rem;">
-          <div class="card-body">
-            <h5 class="card-title text-center">Join a Class</h5>
-            <hr>
-            <p class="card-text">
-                <form action="" method="POST" class="m-3">
-                  <div class="mb-3">
-                    <label for="clcode" class="form-label">Enter the Class Code</label>
-                    <input type="text" class="form-control" name="clcode" id="clcode"  >
-                  </div>
-                  <div class="my-3">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                  </div>
-                </form>
-            </p>
-          </div>
-        </div>
-      </div>
-      
-      </div>
+
+
       <hr>
       
       <h1>Courses</h1>
       <div class="row">
       <%for(var i=0;i<courses.length;i++) {%>
-        <div class="col-md-3 col-sm-4 col-6">
-          <div class="card" style="width: 18rem;">
-            <h5><%=courses[i].title %></h5>
-            <hr>
+        <div class="col-md-3 col-sm-4 col-6 my-3 ">
+          <div class="card ms-3" style="width: 18rem;">
+            <h5 class="zero my-2 ms-1"><%=courses[i].title %></h5>
+            <hr class="zero">
             <div class="card-body">
               <p class="card-text"><%=courses[i].desc %></p>
               <a type="button" class="btn btn-primary" href=courses/<%= courses[i]._id %>>View</a>
@@ -77,14 +62,8 @@
       <% } %>
     </div>
      
-      <hr>
-      <h1>Classes</h1>
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
+  
+    
       
       
 

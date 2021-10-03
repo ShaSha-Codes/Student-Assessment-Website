@@ -12,9 +12,8 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Student Dashboard</h1>
-    <h2>Welcome <%=name %></h2>
-    <a href='/student/logout' class="btn btn-secondary">Logout</a>
+    <%- include('partials/navbar.ejs') %>
+    
     <hr>
    
       <div class="row">
@@ -69,7 +68,7 @@
               <hr>
               <div class="card-body">
                 <p class="card-text"><%=courses[i].desc %></p>
-                <a type="button" class="btn btn-primary" href=courses/<%= courses[i]._id %>>View</a>
+                <a type="button" class="btn btn-primary" href=/student/courses/<%= courses[i]._id %>>View</a>
               </div>
             </div>
           </div>

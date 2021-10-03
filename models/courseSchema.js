@@ -18,7 +18,7 @@ const courseSchema=new mongoose.Schema({
         required:true
     },
     videos:{
-        type:[String]
+        type:[{name:String}]
     },
     student:[{email:String, fname:String, lname:String}]
 });
