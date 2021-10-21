@@ -21,6 +21,7 @@ const fileSchema=new mongoose.Schema({md5:String})
 //Routers
 const videoRouter=require('./routes/video')
 const teacherRouter=require('./routes/teacher')
+const quizRouter=require('./routes/quiz')
 const studentRouter=require('./routes/student')
 const certificateRouter=require('./routes/certificate')
 
@@ -71,18 +72,7 @@ app.use((req,res,next)=>{
 })
   
 
-
-// //single file
-// app.get('/files/:filename',(req,res)=>{
-//     gfs.files.findOne({filename:req.params.filename},(err,file)=>{
-//         if(!file|| file.length===0){
-//             return res.status(404).json({error:"No file exists"});
-//         }
-//         return res.json(file);
-//     })
-// })
-
-
+app.use('/quiz',quizRouter)
 app.use('/video',videoRouter)
 app.use('/teacher',teacherRouter)
 app.use('/student',studentRouter)

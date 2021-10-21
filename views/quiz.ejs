@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="#">
+    <meta name="viewport" content="width=device-width, initial-">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    .butn{
+        width:50%;
+        margin-bottom:20px;
+        text-align:center;
+        margin-left:350px;
+       
+
+    }
+    button{
+      width:500px;
+      height:50px;
+      font-size:20px;
+      background:whitesmoke;
+      border:3px dotted #89ABE3FF; 
+      border-radius:25px;
+    }
+    button:hover{
+      color:white;
+      background-color:black
+    }
+    </style>
+</head>
+    <body>
+        <nav>
+
+        </nav>
+
+     
+        <div class="ques">
+           
+                     
+           <h1>Quiz-list</h1>
+            
+            <% questions.map(question =>{ %>
+              
+
+               <a class="single" href="/quiz/<%= question._id %>">
+                <div class="butn">
+ 
+              <li><button><%=question.subject %> Quiz</button></li></a>
+               </div>
+            
+
+            
+          
+
+          
+         <% }) %>
+               
+        </div>
+    </body>
+  <html>

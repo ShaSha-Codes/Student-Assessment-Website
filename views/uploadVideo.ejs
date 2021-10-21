@@ -18,8 +18,14 @@
 <div class="container">
     <div class="row">
       <div class="card col-md-6 m-auto my-5">
-        <h2 class="text-center mb-2"> Upload Videos</h2>
+        <h2 class="text-center mb-2 mt-4"> Upload Videos</h2>
+        <hr>
+        <%- include('partials/messages.ejs') %>
         <form action=/video/init-video/<%=course%> method="POST" enctype="multipart/form-data">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" name="title" id="title" >
+          <label for="desc" class="form-label">Description</label>
+          <textarea class="form-control mb-3" name="desc" id="desc"></textarea>
           <div class="input-group">
             <input type="file" class="form-control mb-2" id="file" name="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
           </div>

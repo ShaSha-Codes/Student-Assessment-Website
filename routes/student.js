@@ -21,7 +21,7 @@ router.get('/dashboard',ensureStudentAuthenticated,(req,res)=>{
 })
 router.get('/courses/:id',async(req,res)=>{
     course=await courseSchema.findOne({_id:req.params.id})
-    res.render('testing',{vid:course.videos,req:req});
+    res.render('testing',{vid:course.videos,quiz:course.quiz,req:req});
 })
 router.get('/login',(req,res)=>{
     const errors=[]

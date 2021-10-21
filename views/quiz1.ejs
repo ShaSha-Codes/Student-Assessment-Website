@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="#">
+    <meta name="viewport" content="width=device-width, initial-">
+    
+    <style>
+    body{
+    background:whitesmoke;
+    color:black;
+
+}
+h1{
+    text-align: center;
+    margin-bottom:200px;
+    border-bottom:rgb(29, 88, 206) 4px solid;
+    border-radius:25%;
+}
+input[type="radio"]{
+    font-size:25px;
+}
+label{
+    font-size:20px;
+    padding:20px;
+   
+    
+}
+p{
+    font-size:20px;
+
+}
+
+.inpt{
+padding:10px ;
+border:rgb(51, 104, 179) 2px solid;
+display:block;
+margin-top:15px;
+margin-bottom:20px;
+width:400px;
+border-radius:25px;
+font-size:15px;
+box-shadow: inset 2px 2px 5px 1px rgb(41, 98, 233);
+}
+
+.pos{
+    margin-bottom:25px;
+}
+    </style>
+</head>
+<body>
+<h1><%=question.subject %>-Quiz</h1>
+              <form action=/quiz/record/<%=id%> method="POST" id="form-1">
+              <div class="pos">
+              <input type="email" placeholder="emaiId"  class="inpt" name="email" required>
+               
+              </div>
+             
+              <% for(let i=0;i<question.option1.length;i++){ %>
+                <p><%=i+1 %>.<%=question.Question[i] %></p>
+                 
+            <ol class="qst">
+            
+             
+             <li><input type="radio" name=<%="ans"+(i+1) %> value=<%=question.option1[i] %>><%=question.option1[i] %></li><br>
+             <li><input type="radio" name=<%="ans"+(i+1) %> value=<%=question.option2[i] %>><%=question.option2[i] %></li><br>
+             <li><input type="radio" name=<%="ans"+(i+1) %> value=<%=question.option3[i] %>><%=question.option3[i] %></li><br>
+             <li><input type="radio" name=<%="ans"+(i+1) %> value=<%=question.option4[i] %>><%=question.option4[i] %></li><br>
+ 
+             
+            </ol>
+            
+            
+             
+          <% } %>
+       <input type="submit" value="submit">
+       
+       
+          </form>
+          </body>
+
+          </html>
