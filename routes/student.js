@@ -72,13 +72,13 @@ router.post('/register',(req,res)=>{
         errors.push({msg:'Passwords do not match'})
     }
     if(errors.length>0){
-        res.render('register',{errors,fname,lname,email})
+        res.render('register',{errors,req})
     }
     else{
         userSchema.findOne({email:email}).then((user)=>{
             if(user){
                 errors.push({msg:'Email is already taken'})
-                res.render('register',{errors,fname,lname,email})  
+                res.render('register',{errors,req})  
             }
             else{
                 const newUser=new userSchema({
